@@ -1,0 +1,238 @@
+.home_body{
+    background-color: #FDE7A2;
+    text-align: center;
+}
+.choice_link{
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+
+.choice_link div {
+    width: 408px;
+    height: 55px;
+    border-radius: 20px;
+    margin: auto;
+    margin-top: 30px;
+    padding-top: 12px;
+}
+
+.join_choice{
+    background-color: #A0C27C;
+    border: 5px solid black;
+}
+
+.create_choice{
+    background-color: #7D76AD;
+    border: 5px solid black;
+}
+
+.join_choice:hover{
+    border: 5px dashed black;
+}
+
+.create_choice:hover{
+    border: 5px dashed black;
+}
+
+.join_choice span{
+    font-size: 32px;
+    font-family: Microsoft Sans Serif;
+}
+
+.create_choice span{
+    font-size: 32px;
+    font-family: Microsoft Sans Serif;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Microsoft Sans Serif;
+    font-weight: bold;
+    background-color: #FDE7A2;
+}
+
+.join_container {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #A0C27C;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+h2 {
+    margin-top: 0;
+    color: black;
+}
+
+.input_group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: black;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black#ccc;
+    box-sizing: border-box;
+}
+
+.join_button {
+    background-color: #7D76AD;
+    color: black;
+    padding: 10px 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    height: 40px;
+    margin-top: 1px;
+    font-weight: bold;
+}
+
+.join_button:hover {
+    border: 2px dashed black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.create_container {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #7D76AD;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.create_title {
+    margin-top: 0;
+    color: black;
+}
+
+.input_group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input_label {
+    display: block;
+    margin-bottom: 5px;
+    color: black;
+}
+
+.input_field {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+
+.create_button {
+    font-weight: bold;
+    background-color: #A0C27C;
+    color: black;
+    padding: 10px 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    height: 40px;
+    margin-top: 1px;
+}
+
+.create_button:hover {
+    border: 2px dashed black;
+}
+
+.menu {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid black;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #333;
+    font-size: 16px; /* Adjust font size */
+    font-family: Arial, sans-serif; /* Adjust font family */
+}
+
+/* Style the dropdown arrow */
+.menu::-ms-expand {
+    display: none; /* Hide arrow in IE */
+}
+.menu::before {
+    content: '\25BC'; /* Unicode for dropdown arrow */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #555; /* Arrow color */
+}
+
+/* Style the options */
+.menu option {
+    background-color: #fff; /* Background color of each option */
+    color: #333; /* Text color of each option */
+}
+
+/* Style the hover effect on options */
+.menu option:hover {
+    background-color: #f0f0f0; /* Background color on hover */
+    color: #555; /* Text color on hover */
+}
+
+.back_button {
+    display: black;
+    text-decoration: none;
+    background-color: #FF5733; /* Adjust button color */
+    color: black;
+    padding: 10px 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    font-size: 14px;
+    height: 40px;
+}
+
+.back_button:hover {
+    border: 2px dashed black;
+}

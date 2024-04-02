@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a Room</title>
+    <link rel="stylesheet" href="static/css/app.css">
+</head>
+<body>
+    <div class="create_container">
+        <h2 class="create_title">Create a Room</h2>
+        <form action="{{ url_for('create') }}" method="POST">
+            <div class="input_group">
+                <label for="room_name" class="input_label">Name:</label>
+                <input type="text" id="room_name" name="room_name" class="input_field" placeholder="Enter room name">
+            </div>
+            <div class="input_group">
+                <label for="game_menu" class="input_label">Select Game:</label>
+                <select id="game_menu" name="game_menu" class="menu">
+                    <option value="TicTacToe">Tic Tac Toe</option>
+                    <option value="game2">Game 2</option>
+                    <option value="game3">Game 3</option>
+                </select>
+            </div>
+            <button type = "submit" class="create_button">Create</button>
+            <a href = "/" class = "back_button">Back</a>
+        </form>
+    </div>
+</body>
+</html>
