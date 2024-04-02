@@ -7,5 +7,15 @@
 </head>
 <body>
     <p>Hello</p>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
+    <script type="text/javascript">
+        var socket = io.connect('http://' + document.domain + ':' + location.port + '/create');
+ 
+        // Emit 'joined' event when socket connection is established
+        socket.on('connect', function () {
+            socket.emit('joined', '{{room_info}}' );
+        });
+    </script>
 </body>
 </html>
