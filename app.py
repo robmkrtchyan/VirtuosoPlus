@@ -35,8 +35,12 @@ rooms = {
 def home():
     return render_template("home.html")
 
-@app.route("/join")
+@app.route("/join", methods=['GET','POST'])
 def join():
+    if request.method == "POST":
+        room_code = request.form.get('room_code')
+        name = request.form.get('name')
+        return redirect(url_for('room', room_code=room_code, username=name))
     return render_template("join.html")
 
 @app.route('/create', methods=['GET','POST'])
@@ -68,11 +72,52 @@ def joined(message):
     print("_______________________________")
     print("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
     print(message)
-    message = messageToDict(message)
-    print(message)
-    room_code = message['code']  # Access the room code correctly
-    rooms[room_code]["players"].append(message["username"])
+    room_info = messageToDict(message['room_info'])
+    print(room_info)
+    print(rooms)
+    room_code = room_info['code']  # Access the room code correctly
+    rooms[room_code]["players"].append(message['username'])
     join_room(room_code)  # Join the correct room
     emit('status', {'msg': message['username'] + ' has joined the room.'}, room=room_code)
+
+@socketio.on('joined', namespace='/join')
+def joined(message):
+    print("_______________________________")
+    print("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
+    print(message)
+    room_info = messageToDict(message['room_info'])
+    print(room_info)
+    print(rooms)
+    room_code = room_info['code']  # Access the room code correctly
+    print(rooms)
+    if room_code in rooms.keys():
+        rooms[room_code]["players"].append(message['username'])
+        join_room(room_code)  # Join the correct room
+        emit('status', {'msg': message['username'] + ' has joined the room.'}, room=room_code)
+    
+
+@socketio.on('left', namespace='/create')
+def left(message):
+    room_info = messageToDict(message['room_info'])
+    room_code = room_info['code']
+    username = message['username']
+    if username in rooms[room_code]["players"]:
+        rooms[room_code]["players"].remove(username)
+    leave_room(room_code)
+    emit('status', {'msg': username + ' has left the room.'}, room=room_code)
+    print(rooms)
+    
+@socketio.on('left', namespace='/join')
+def left(message):
+    room_info = messageToDict(message['room_info'])
+    room_code = room_info['code']
+    username = message['username']
+    if username in rooms[room_code]["players"]:
+        rooms[room_code]["players"].remove(username)
+    leave_room(room_code)
+    emit('status', {'msg': username + ' has left the room.'}, room=room_code)
+    print(rooms)
+    
+
 
 socketio.run(app, debug=True)

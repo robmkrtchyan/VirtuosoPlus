@@ -6,15 +6,23 @@
     <title>Document</title>
 </head>
 <body>
-    <p>Hello</p>
+    <p>{{room_info['code']}}</p>
+    <p>{{username}}</p>
 
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
     <script type="text/javascript">
-        var socket = io.connect('http://' + document.domain + ':' + location.port + '/create');
+        var socket1 = io.connect('http://' + document.domain + ':' + location.port + '/create');
  
         // Emit 'joined' event when socket connection is established
-        socket.on('connect', function () {
-            socket.emit('joined', '{{room_info}}' );
+        socket1.on('connect', function () {
+            socket1.emit('joined', {'room_info':'{{room_info}}', 'username': '{{username}}'} );
+            socket1.emit('left', {'room_info':'{{room_info}}', 'username': '{{username}}'} );
+        });
+
+        var socket2 = io.connect('http://' + document.domain + ':' + location.port + '/join');
+        socket2.on('connect', function () {
+            socket2.emit('joined', {'room_info':'{{room_info}}', 'username': '{{username}}'} );
+            socket2.emit('left', {'room_info':'{{room_info}}', 'username': '{{username}}'} );
         });
     </script>
 </body>

@@ -6,19 +6,21 @@
     <title>Join Page</title>
     <link rel="stylesheet" href="static/css/app.css">
 </head>
-<body class = "join_body">
+<body class="join_body">
     <div class="join_container">
         <h2>Join Page</h2>
-        <div class="input_group">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name">
-        </div>
-        <div class="input_group">
-            <label for="room_code">Room Code:</label>
-            <input type="text" id="room_code" name="room_code" placeholder="Enter room code">
-        </div>
-        <button class="join_button">Join</button>
-        <a href = "/" class = "back_button">Back</a>
+        <form id="join_form" action="{{ url_for('join') }}" method="POST">
+            <div class="input_group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name">
+            </div>
+            <div class="input_group">
+                <label for="room_code">Room Code:</label>
+                <input type="text" id="room_code" name="room_code" placeholder="Enter room code">
+            </div>
+            <button type="submit" class="join_button">Join</button>
+            <a href="/" class="back_button">Back</a>
+        </form>
     </div>
 </body>
 </html>

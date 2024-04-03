@@ -26,16 +26,5 @@
             <a href="/" class="back_button">Back</a>
         </form>
     </div>
-
-    <script>
-        const socket = io.connect('http://' + document.domain + ':' + location.port + '/create');
-    
-        socket.on('joined', function () {
-            socket.emit('joined', {
-                username: "{{ username }}",
-                room: "{{ room }}"
-            });
-        });
-    </script>
 </body>
 </html>
