@@ -122,6 +122,6 @@ def left(message):
     
 
 
-socketio.run(app, debug=True)
+
 socketio.run(app, debug=True)
 '''qwerty'''
