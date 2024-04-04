@@ -3,6 +3,7 @@ from flask_socketio import SocketIO, join_room, leave_room, emit
 import secrets
 import json
 import html
+from .games.TicTacToe.main import Game
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = secrets.token_hex(16)
