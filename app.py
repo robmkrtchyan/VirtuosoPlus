@@ -3,7 +3,7 @@ from flask_socketio import SocketIO, join_room, leave_room, emit
 import secrets
 import json
 import html
-from .games.TicTacToe.main import Game
+from .games.TicTacToe.main import TicTacToe
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = secrets.token_hex(16)
@@ -60,12 +60,16 @@ def create():
     return render_template("create.html")
     
 
-@app.route('/room/<room_code>/<username>')
+@app.route('/room/<room_code>/<username>', methods = ["POST", "GET"])
 def room(room_code, username):
     room_info = rooms.get(room_code)
     if room_info:
         if room_info['game'] == 'TicTacToe':
-            return render_template('tictactoe.html', username=username, room_info = room_info)
+            if request.method == "POST":
+                pos = request.form.get("cellIndex")
+            game = TicTacToe()
+            game.play(pos)
+            return render_template('tictactoe.html', username=username, room_info = room_info, board = game.toXO())
         return render_template('room.html', username=username, room_info=room_info)
     else:
         return "Room not found!"

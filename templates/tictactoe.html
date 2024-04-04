@@ -34,16 +34,9 @@
     <input type="submit" value="Submit Move">
 </form>
 <div class="board" id="board">
-    {{for i  in board}}
-    <div class="cell" onclick="placeMarker(0)"></div>
-    <div class="cell" onclick="placeMarker(1)"></div>
-    <div class="cell" onclick="placeMarker(2)"></div>
-    <div class="cell" onclick="placeMarker(3)"></div>
-    <div class="cell" onclick="placeMarker(4)"></div>
-    <div class="cell" onclick="placeMarker(5)"></div>
-    <div class="cell" onclick="placeMarker(6)"></div>
-    <div class="cell" onclick="placeMarker(7)"></div>
-    <div class="cell" onclick="placeMarker(8)"></div>
+    {% for i in range(board|length) %}
+        <div class="cell" onclick="placeMarker ( {{ i }} )">{{ board[i] }}</div>
+    {% endfor %}
 </div>
 <script>
     function placeMarker(cellIndex) {

@@ -1,4 +1,4 @@
-class Game:
+class TicTacToe:
     def __init__(self):
         self.board = [
             [0, 0, 0],
@@ -6,6 +6,7 @@ class Game:
             [0, 0, 0]
         ]
         self.winner = None
+        self.round = 1
         
     def getBoard(self):
         return self.board
@@ -32,10 +33,33 @@ class Game:
         #diagonal winner
         if (self.board[0][0] == self.board[1][1] and self.board[0][0] == self.board[2][2]): return self.board[0][0]
         if (self.board[0][2] == self.board[1][1] and self.board[0][2] == self.board[2][0]): return self.board[2][0]
-        
-    def play(row, col, round, game):
-        if (game.isTaken(row, col) == False):
-            game.setSquare(row, col, round % 2 + 1)
-            return [game.getBoard(), "empty", game.isWinner()]
+    
+    def posToRow(self, pos):
+        row = pos//3
+        return row
+    
+    def posToCol(self, pos):
+        col = pos%3
+        return col
+    
+    def play(self, pos):
+        row = self.posToRow(pos)
+        col = self.posToCol(pos)
+        if (self.isTaken(row, col) == False):
+            self.setSquare(row, col, round % 2 + 1)
+            self.round += 1 
+            return [self.getBoard(), "empty", self.isWinner()]
         else:
-            return [game.getBoard(), "taken", game.isWinner()]       
+            return [self.getBoard(), "taken", self.isWinner()]
+        
+    def toXO(self):
+        boardXO = []
+        for row in range(len(self.board)):
+            for col in range(len(self.board[row])):
+                if self.board[row][col] == 0:
+                    boardXO.append("")
+                elif self.board[row][col] == 1:
+                    boardXO.append("X")
+                elif self.board[row][col] == 2:
+                    boardXO.append("O")
+        return boardXO
