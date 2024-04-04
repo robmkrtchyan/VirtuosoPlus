@@ -63,6 +63,8 @@ def create():
 def room(room_code, username):
     room_info = rooms.get(room_code)
     if room_info:
+        if room_info['game'] == 'TicTacToe':
+            return render_template('tictactoe.html', username=username, room_info = room_info)
         return render_template('room.html', username=username, room_info=room_info)
     else:
         return "Room not found!"

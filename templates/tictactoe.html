@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tic Tac Toe</title>
+<style>
+    .board {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 5px;
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+    }
+    .cell {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ccc;
+        border: 1px solid #999;
+        font-size: 2em;
+        cursor: pointer;
+    }
+    .cell:hover {
+        background-color: #eee;
+    }
+</style>
+</head>
+<body>
+<form id="ticTacToeForm" method="post" action="/move">
+    <input type="hidden" name="cellIndex" id="cellIndex">
+    <input type="submit" value="Submit Move">
+</form>
+<div class="board" id="board">
+    {{for i  in board}}
+    <div class="cell" onclick="placeMarker(0)"></div>
+    <div class="cell" onclick="placeMarker(1)"></div>
+    <div class="cell" onclick="placeMarker(2)"></div>
+    <div class="cell" onclick="placeMarker(3)"></div>
+    <div class="cell" onclick="placeMarker(4)"></div>
+    <div class="cell" onclick="placeMarker(5)"></div>
+    <div class="cell" onclick="placeMarker(6)"></div>
+    <div class="cell" onclick="placeMarker(7)"></div>
+    <div class="cell" onclick="placeMarker(8)"></div>
+</div>
+<script>
+    function placeMarker(cellIndex) {
+        document.getElementById('cellIndex').value = cellIndex;
+        document.getElementById('ticTacToeForm').submit();
+    }
+</script>
+</body>
+</html>

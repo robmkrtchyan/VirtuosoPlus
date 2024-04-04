@@ -33,12 +33,9 @@ class Game:
         if (self.board[0][0] == self.board[1][1] and self.board[0][0] == self.board[2][2]): return self.board[0][0]
         if (self.board[0][2] == self.board[1][1] and self.board[0][2] == self.board[2][0]): return self.board[2][0]
         
-        
-
-
-def play(row, col, round, game):
-    if (game.isTaken(row, col) == False):
-        game.setSquare(row, col, round % 2 + 1)
-        return [game.getBoard(), "empty", game.isWinner()]
-    else:
-        return [game.getBoard(), "taken", game.isWinner()]       
+    def play(row, col, round, game):
+        if (game.isTaken(row, col) == False):
+            game.setSquare(row, col, round % 2 + 1)
+            return [game.getBoard(), "empty", game.isWinner()]
+        else:
+            return [game.getBoard(), "taken", game.isWinner()]       
