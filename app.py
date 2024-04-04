@@ -3,7 +3,7 @@ from flask_socketio import SocketIO, join_room, leave_room, emit
 import secrets
 import json
 import html
-from .games.TicTacToe.main import TicTacToe
+import games.TicTacToe.TicTacToe as ttt
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = secrets.token_hex(16)
@@ -21,14 +21,15 @@ def messageToDict(encrypted_string):
         print("Error decoding JSON:", e)
         return None
 
-
+ogTicTacToe = ttt.TicTacToe()
 
 rooms = {
     "0000": {
         "game": "TicTacToe",
         "limit": 2,
         "players": [],
-        "code": "0000"
+        "code": "0000",
+        "gboard": ogTicTacToe
     }
 }
 
@@ -47,6 +48,7 @@ def join():
 @app.route('/create', methods=['GET','POST'])
 def create():
     if request.method == "POST":
+        gboard = ttt.TicTacToe()
         game = request.form.get("game_menu")
         name = request.form.get("name")
         room_code = secrets.token_hex(2)  # Generate a unique 4-character room code
@@ -54,7 +56,8 @@ def create():
             "game": game, 
             "limit": 2,
             "players": [],
-            "code": room_code
+            "code": room_code,
+            "gboard": gboard
         }
         return redirect(url_for('room', room_code=room_code, username=name))
     return render_template("create.html")
@@ -67,9 +70,9 @@ def room(room_code, username):
         if room_info['game'] == 'TicTacToe':
             if request.method == "POST":
                 pos = request.form.get("cellIndex")
-            game = TicTacToe()
-            game.play(pos)
-            return render_template('tictactoe.html', username=username, room_info = room_info, board = game.toXO())
+                rooms[room_info['code']]['gboard'].play(int(pos))
+                print(rooms[room_info['code']]['gboard'].getBoard())
+            return render_template('tictactoe.html', username=username, room_info = room_info, board = rooms[room_info['code']]['gboard'].toXO())
         return render_template('room.html', username=username, room_info=room_info)
     else:
         return "Room not found!"
@@ -111,6 +114,7 @@ def left(message):
     if username in rooms[room_code]["players"]:
         rooms[room_code]["players"].remove(username)
     leave_room(room_code)
+    rooms[room_code]['gboard'] = ttt.TicTacToe()
     emit('status', {'msg': username + ' has left the room.'}, room=room_code)
     print(rooms)
     

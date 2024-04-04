@@ -29,9 +29,8 @@
 </style>
 </head>
 <body>
-<form id="ticTacToeForm" method="post" action="/move">
+<form id="ticTacToeForm" method="post" action="/room/{{room_info['code']}}/{{username}}">
     <input type="hidden" name="cellIndex" id="cellIndex">
-    <input type="submit" value="Submit Move">
 </form>
 <div class="board" id="board">
     {% for i in range(board|length) %}

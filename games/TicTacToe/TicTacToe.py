@@ -10,6 +10,9 @@ class TicTacToe:
         
     def getBoard(self):
         return self.board
+    
+    def setBoard(self, newBoard):
+        self.board = newBoard
         
     def isTaken(self, row, col):
         if (self.board[row][col] > 0):
@@ -46,7 +49,7 @@ class TicTacToe:
         row = self.posToRow(pos)
         col = self.posToCol(pos)
         if (self.isTaken(row, col) == False):
-            self.setSquare(row, col, round % 2 + 1)
+            self.setSquare(row, col, self.round % 2 + 1)
             self.round += 1 
             return [self.getBoard(), "empty", self.isWinner()]
         else:
