@@ -62,7 +62,6 @@ def create():
         return redirect(url_for('room', room_code=room_code, username=name))
     return render_template("create.html")
     
-
 # Modify the reset handling logic
 @app.route('/room/<room_code>/<username>', methods=["POST", "GET"])
 def room(room_code, username):
@@ -77,11 +76,11 @@ def room(room_code, username):
                     socketio.emit('reset_board', room=room_code)
                 else:
                     pos = request.form.get("cellIndex")
-                    rooms[room_info['code']]['gboard'].play(int(pos))
-                    print(rooms[room_info['code']]['gboard'].getBoard())
+                    msg = rooms[room_info['code']]['gboard'].play(int(pos))
+                    print(msg[0])
 
             return render_template('tictactoe.html', username=username, room_info=room_info,
-                                   board=rooms[room_info['code']]['gboard'].toXO())
+                                   board=rooms[room_info['code']]['gboard'].toXO(), winner = msg[2])
         return render_template('room.html', username=username, room_info=room_info)
     else:
         return "Room not found!"
