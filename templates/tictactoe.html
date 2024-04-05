@@ -47,8 +47,30 @@
         cursor: pointer;
     }
 </style>
+<style>
+    .back-button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 3px;
+        curdor: pointer;
+        font-size: 14px;
+    }
+    
+    .back-button:hover {
+        background-color: #0056b3;
+    }
+</style>
 </head>
 <body>
+
+<button class="back-button" onclick="goBack()"> Back</button>
+<script>
+    function goBack() {
+        window.location.href = "/join";
+    }
+</script>
 <form id="ticTacToeForm" method="post" action="/room/{{room_info['code']}}/{{username}}">
     <input type="hidden" name="cellIndex" id="cellIndex">
 </form>
@@ -84,6 +106,9 @@
         document.getElementById('cellIndex').value = cellIndex;
         document.getElementById('ticTacToeForm').submit();
     }
+
+    
 </script>
+
 </body>
 </html>
