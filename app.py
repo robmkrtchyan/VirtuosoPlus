@@ -80,7 +80,7 @@ def room(room_code, username):
                     print(msg[0])
 
             return render_template('tictactoe.html', username=username, room_info=room_info,
-                                   board=rooms[room_info['code']]['gboard'].toXO(), winner = msg[2])
+                                   board=rooms[room_info['code']]['gboard'].toXO(), winner = msg[2],  error = msg[1])
         return render_template('room.html', username=username, room_info=room_info)
     else:
         return "Room not found!"
