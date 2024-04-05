@@ -68,6 +68,7 @@ def room(room_code, username):
     room_info = rooms.get(room_code)
     if room_info:
         if room_info['game'] == 'TicTacToe':
+            msg = [rooms[room_info['code']]['gboard'].getBoard(), "empty", 0]
             if request.method == "POST":
                 reset_needed = request.form.get("reset")
                 if reset_needed == "yes":
