@@ -26,6 +26,26 @@
     .cell:hover {
         background-color: #eee;
     }
+    .reload-button {
+        display: block;
+        margin: 10px auto;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    #resetButton{
+        display: block;
+        margin: 10px auto;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 </style>
 </head>
 <body>
@@ -34,10 +54,19 @@
 </form>
 <div class="board" id="board">
     {% for i in range(board|length) %}
-        <div class="cell" onclick="placeMarker ( {{ i }} )">{{ board[i] }}</div>
+        <div class="cell" onclick="placeMarker({{ i }})">{{ board[i] }}</div>
     {% endfor %}
 </div>
+<button class="reload-button" onclick="reloadBoard()">Reload Board</button>
+<form id="resetForm" method="post" action="/room/{{room_info['code']}}/{{username}}">
+    <input type="hidden" name="reset" value="yes">
+    <button type="submit" id="resetButton">Reset Board</button>
+</form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
 <script>
+    function reloadBoard() {
+        location.reload(); // Reload the entire page
+    }
     function placeMarker(cellIndex) {
         document.getElementById('cellIndex').value = cellIndex;
         document.getElementById('ticTacToeForm').submit();

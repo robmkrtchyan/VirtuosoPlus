@@ -69,9 +69,14 @@ def room(room_code, username):
     if room_info:
         if room_info['game'] == 'TicTacToe':
             if request.method == "POST":
-                pos = request.form.get("cellIndex")
-                rooms[room_info['code']]['gboard'].play(int(pos))
-                print(rooms[room_info['code']]['gboard'].getBoard())
+                resetNeeded = request.form.get("reset")
+                if resetNeeded == "yes":
+                    rooms[room_info['code']]['gboard'].setBoard([[0,0,0],[0,0,0],[0,0,0]])
+                else:
+                    pos = request.form.get("cellIndex")
+                    rooms[room_info['code']]['gboard'].play(int(pos))
+                    print(rooms[room_info['code']]['gboard'].getBoard())
+                
             return render_template('tictactoe.html', username=username, room_info = room_info, board = rooms[room_info['code']]['gboard'].toXO())
         return render_template('room.html', username=username, room_info=room_info)
     else:

@@ -61,8 +61,8 @@ class TicTacToe:
             for col in range(len(self.board[row])):
                 if self.board[row][col] == 0:
                     boardXO.append("")
-                elif self.board[row][col] == 1:
-                    boardXO.append("X")
                 elif self.board[row][col] == 2:
+                    boardXO.append("X")
+                elif self.board[row][col] == 1:
                     boardXO.append("O")
         return boardXO
