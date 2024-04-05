@@ -4,6 +4,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tic Tac Toe</title>
+<!-- MEKEL ESIEM AVELACREL, PITI VOR SIRUN PATUHANIK BACER MEJ@ GRER OVA HAXTEL BAYC CHI ASHXATUM!!!
+<style>
+    .tex-with-lines {
+        font-family: Arial, sans-serif;
+        font-size: 24px;
+        line-height: 1.5;
+        position: relative;
+        margin: 50px;
+    }
+
+    .text-with-lines:after{
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #395;
+
+    }
+</style>
+-->
 <style>
     .board {
         display: grid;
@@ -64,13 +86,20 @@
 </style>
 </head>
 <body>
-
+<p>{{error}}</p>
 <button class="back-button" onclick="goBack()"> Back</button>
 <script>
     function goBack() {
         window.location.href = "/join";
     }
 </script>
+<!-- Ape esiem avelacrel bayc xuyevo chi ashxatum>>>
+<div class="text-with-lines">
+    <p>
+        {{text}}
+    </p>
+</div>
+-->
 <form id="ticTacToeForm" method="post" action="/room/{{room_info['code']}}/{{username}}">
     <input type="hidden" name="cellIndex" id="cellIndex">
 </form>

@@ -7,6 +7,8 @@ class TicTacToe:
         ]
         self.winner = None
         self.round = 1
+    
+    
         
     def getBoard(self):
         return self.board
@@ -37,6 +39,16 @@ class TicTacToe:
         if (self.board[0][0] == self.board[1][1] and self.board[0][0] == self.board[2][2]): return self.board[0][0]
         if (self.board[0][2] == self.board[1][1] and self.board[0][2] == self.board[2][0]): return self.board[2][0]
     
+    
+    '''mekel es taki def xuynyanem avelacrel bayc eli chi ashatum xuyevo incha'''
+    def check_winner(self):
+        if all(self.isWinner()=='X'):
+            return "winner is player X"
+        elif all(self.isWinner()== 'O'):
+            return 'Winner is player O'
+        else:
+            return 'nobody wins guys)'
+    
     def posToRow(self, pos):
         row = pos//3
         return row
@@ -65,4 +77,5 @@ class TicTacToe:
                     boardXO.append("X")
                 elif self.board[row][col] == 1:
                     boardXO.append("O")
+                
         return boardXO
