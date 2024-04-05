@@ -64,9 +64,22 @@
 </form>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
 <script>
+    // Connect to the Socket.IO server
+    const socket = io();
+
+    // Listen for the 'reset_board' event
+    socket.on('reset_board', () => {
+        // Reset the board UI
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach(cell => {
+            cell.textContent = ''; // Clear the content of each cell
+        });
+    });
+
     function reloadBoard() {
         location.reload(); // Reload the entire page
     }
+
     function placeMarker(cellIndex) {
         document.getElementById('cellIndex').value = cellIndex;
         document.getElementById('ticTacToeForm').submit();

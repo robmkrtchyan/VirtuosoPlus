@@ -63,24 +63,34 @@ def create():
     return render_template("create.html")
     
 
-@app.route('/room/<room_code>/<username>', methods = ["POST", "GET"])
+# Modify the reset handling logic
+@app.route('/room/<room_code>/<username>', methods=["POST", "GET"])
 def room(room_code, username):
     room_info = rooms.get(room_code)
     if room_info:
         if room_info['game'] == 'TicTacToe':
             if request.method == "POST":
-                resetNeeded = request.form.get("reset")
-                if resetNeeded == "yes":
-                    rooms[room_info['code']]['gboard'].setBoard([[0,0,0],[0,0,0],[0,0,0]])
+                reset_needed = request.form.get("reset")
+                if reset_needed == "yes":
+                    rooms[room_info['code']]['gboard'].setBoard([[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+                    # Emit a socket event to inform all clients to reset the board
+                    socketio.emit('reset_board', room=room_code)
                 else:
                     pos = request.form.get("cellIndex")
                     rooms[room_info['code']]['gboard'].play(int(pos))
                     print(rooms[room_info['code']]['gboard'].getBoard())
-                
-            return render_template('tictactoe.html', username=username, room_info = room_info, board = rooms[room_info['code']]['gboard'].toXO())
+
+            return render_template('tictactoe.html', username=username, room_info=room_info,
+                                   board=rooms[room_info['code']]['gboard'].toXO())
         return render_template('room.html', username=username, room_info=room_info)
     else:
         return "Room not found!"
+
+# Add socket event handler for board reset
+@socketio.on('reset_board')
+def reset_board(room_code):
+    rooms[room_code]['gboard'].setBoard([[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+
 
 @socketio.on('joined', namespace='/create')
 def joined(message):
