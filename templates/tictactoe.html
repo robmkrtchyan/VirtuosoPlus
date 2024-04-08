@@ -6,15 +6,15 @@
 <title>Tic Tac Toe</title>
 <!-- MEKEL ESIEM AVELACREL, PITI VOR SIRUN PATUHANIK BACER MEJ@ GRER OVA HAXTEL BAYC CHI ASHXATUM!!!
 <style>
-    .tex-with-lines {
+    .text-lines {
         font-family: Arial, sans-serif;
         font-size: 24px;
         line-height: 1.5;
-        position: relative;
+        position: bottom ;
         margin: 50px;
     }
 
-    .text-with-lines:after{
+    .text-lines:after{
         content: "";
         position: absolute;
         bottom: -10px;
@@ -24,8 +24,16 @@
         background-color: #395;
 
     }
-</style>
--->
+</style>-->
+
+<style>.porc {
+    border-radius: 40px;
+    background-color: greenyellow;
+    border: 1px solid blue;
+    height: -100px;
+    text-align: center;
+    
+  }</style>
 <style>
     .board {
         display: grid;
@@ -93,18 +101,19 @@
         window.location.href = "/join";
     }
 </script>
-<div class="text-with-lines">
-    <!--inch a "text"y du tenc variable chunes poxancac.-->
-    <p>
-        {{winner}}
-    </p>
-</div>
+ <!--<div class="text-lines">
+   inch a "text"y du tenc variable chunes poxancac.
+    
+    {{winner}}
+    
+</div>-->
+<div class="porc">{{winner}}</div>
 <form id="ticTacToeForm" method="post" action="/room/{{room_info['code']}}/{{username}}">
     <input type="hidden" name="cellIndex" id="cellIndex">
 </form>
 <div class="board" id="board">
     {% for i in range(board|length) %}
-        <div class="cell" onclick="placeMarker({{ i }})">{{ board[i] }}</div>
+        <div class="cell" onclick="placeMarker({ i })">{{ board[i] }}</div>
     {% endfor %}
 </div>
 <button class="reload-button" onclick="reloadBoard()">Reload Board</button>

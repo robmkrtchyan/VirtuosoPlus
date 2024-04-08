@@ -41,6 +41,7 @@ class TicTacToe:
     
     
     '''texerov petq a poxes u naxuya all()?'''
+    '''xuyevo xi em grel all(), ape ba css vor grelem xi ches nayel?'''
     def check_winner(self):
         if (self.isWinner()==2):
             return "winner is player X"
