@@ -94,7 +94,7 @@
 </style>
 </head>
 <body>
-<p>{{error}}</p>
+
 <button class="back-button" onclick="goBack()"> Back</button>
 <script>
     function goBack() {
@@ -107,13 +107,13 @@
     {{winner}}
     
 </div>-->
-<div class="porc">{{winner}}</div>
+<div class="porc" >{{winner}}</div>
 <form id="ticTacToeForm" method="post" action="/room/{{room_info['code']}}/{{username}}">
     <input type="hidden" name="cellIndex" id="cellIndex">
 </form>
 <div class="board" id="board">
     {% for i in range(board|length) %}
-        <div class="cell" onclick="placeMarker({ i })">{{ board[i] }}</div>
+        <div class="cell" onclick="placeMarker({{ i }})">{{ board[i] }}</div>
     {% endfor %}
 </div>
 <button class="reload-button" onclick="reloadBoard()">Reload Board</button>
