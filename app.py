@@ -79,9 +79,9 @@ def room(room_code, username):
                     pos = request.form.get("cellIndex")
                     msg = rooms[room_info['code']]['gboard'].play(int(pos))
                     print(msg[0])
-
+            #ches poxancel ed go grats methody qo sitin.
             return render_template('tictactoe.html', username=username, room_info=room_info,
-                                   board=rooms[room_info['code']]['gboard'].toXO(), winner = msg[2],  error = msg[1])
+                                   board=rooms[room_info['code']]['gboard'].toXO(), winner = rooms[room_info['code']]['gboard'].check_winner(),  error = msg[1])
         return render_template('room.html', username=username, room_info=room_info)
     else:
         return "Room not found!"

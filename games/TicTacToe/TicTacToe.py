@@ -40,11 +40,11 @@ class TicTacToe:
         if (self.board[0][2] == self.board[1][1] and self.board[0][2] == self.board[2][0]): return self.board[2][0]
     
     
-    '''mekel es taki def xuynyanem avelacrel bayc eli chi ashatum xuyevo incha'''
+    '''texerov petq a poxes u naxuya all()?'''
     def check_winner(self):
-        if all(self.isWinner()=='X'):
+        if (self.isWinner()==2):
             return "winner is player X"
-        elif all(self.isWinner()== 'O'):
+        elif (self.isWinner()== 1):
             return 'Winner is player O'
         else:
             return 'nobody wins guys)'
